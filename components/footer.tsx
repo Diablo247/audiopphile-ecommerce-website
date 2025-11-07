@@ -3,9 +3,9 @@ import Link from "next/link";
 export default function Footer() {
   const navLinks = [
     { text: "HOME", href: "/" },
-    { text: "ABOUT", href: "/about" },
-    { text: "PRODUCTS", href: "/products" },
-    { text: "CONTACTS", href: "/contact" },
+    { text: "SPEAKERS", href: "/speakers" },
+    { text: "HEADPHONES", href: "/headphones" },
+    { text: "EARPHONES", href: "/earphones" },
   ];
 
   return (

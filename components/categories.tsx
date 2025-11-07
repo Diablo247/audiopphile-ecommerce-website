@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export default function categories() {
   const categories =  [
-    { name: "HEADPHONES", src: "/category-headphones.svg" },
-    { name: "SPEAKERS", src: "/category-speakers.svg" },
-    { name: "EARPHONES", src: "/category-earphones.svg" },
+    { name: "HEADPHONES", src: "/category-headphones.svg", href:"/headphones"  },
+    { name: "SPEAKERS", src: "/category-speakers.svg", href:"/speakers" },
+    { name: "EARPHONES", src: "/category-earphones.svg",  href:"/earphones" },
   ];
 
   return (
@@ -25,7 +25,7 @@ export default function categories() {
           </h3>
 
           <Link
-            href={"/page.tsx"}
+            href={category.href}
             className="flex justify-center items-center gap-2.5 "
           >
             {" "}
