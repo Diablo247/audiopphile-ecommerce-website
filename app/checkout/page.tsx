@@ -1,4 +1,7 @@
 "use client";
+
+export const dynamic = "force-dynamic";
+
 import { sendOrderEmail } from "../act/action";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
