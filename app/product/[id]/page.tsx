@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import { products } from "../../data/products";
 import Nav from "@/components/nav";

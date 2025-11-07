@@ -1,12 +1,17 @@
 "use client";
 
-import { ConvexProvider } from "convex/react";
-import convex from "@/convex/client";
+import { ConvexProvider, ConvexReactClient } from "convex/react";
+import { ReactNode } from "react";
+import { CartProvider } from "../context/cartContext";
 
-export default function ConvexProviderWrapper({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <ConvexProvider client={convex}>{children}</ConvexProvider>;
+const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
+
+export function Providers({ children }: { children: ReactNode }) {
+  return (
+    <ConvexProvider client={convex}>
+      <CartProvider>
+        {children}
+      </CartProvider>
+    </ConvexProvider>
+  );
 }
