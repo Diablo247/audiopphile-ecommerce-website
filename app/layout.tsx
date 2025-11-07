@@ -1,7 +1,8 @@
-import "./globals.css";
-import { ReactNode } from "react";
-import { Providers } from "../app/providers/ConvexProvider";
+import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
+import "./globals.css";
+import Providers from "../app/providers/ConvexProvider";
+import { CartProvider } from "../app/context/cartContext";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -9,16 +10,22 @@ const manrope = Manrope({
   variable: "--font-manrope",
 });
 
-export const metadata = {
-  title: "Audiophile Checkout",
-  description: "Audiophile e-commerce checkout page",
+export const metadata: Metadata = {
+  title: "Audiophile E-commerce",
+  description: "Premium audio products built with Next.js + Convex",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className={`${manrope.className} ${manrope.variable}`}>
       <body>
-        <Providers>{children}</Providers>
+        <CartProvider>
+          <Providers>{children}</Providers>
+        </CartProvider>
       </body>
     </html>
   );

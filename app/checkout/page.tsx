@@ -1,10 +1,8 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-
-import { sendOrderEmail } from "../act/action";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { sendOrderEmail } from "../act/action";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";

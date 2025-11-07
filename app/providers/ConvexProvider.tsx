@@ -1,17 +1,24 @@
+// Location: app/providers/ConvexProvider.tsx
 "use client";
 
-import { ConvexProvider, ConvexReactClient } from "convex/react";
 import { ReactNode } from "react";
-import { CartProvider } from "../context/cartContext";
+import { ConvexProvider, ConvexReactClient } from "convex/react";
 
-const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
+// Initialize the client statically outside the component function
+const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
 
-export function Providers({ children }: { children: ReactNode }) {
+if (!convexUrl) {
+  // Throw an error early if the variable is missing during client build
+  throw new Error("❌ NEXT_PUBLIC_CONVEX_URL is not defined.");
+}
+
+const convex = new ConvexReactClient(convexUrl);
+
+export default function Providers({ children }: { children: ReactNode }) {
+  // Now we can return the provider immediately
   return (
     <ConvexProvider client={convex}>
-      <CartProvider>
-        {children}
-      </CartProvider>
+      {children}
     </ConvexProvider>
   );
 }

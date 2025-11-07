@@ -1,11 +1,13 @@
+export const dynamic = "force-dynamic";
+
 import Nav from "@/components/nav";
 import Info from "@/components/info";
 import Link from "next/link";
 import { products } from "../data/products";
 import Categories from "@/components/categories";
 import Footer from "@/components/footer";
+
 export default function headphones() {
-    
   const earphones = products.filter(
     (product) => product.category === "EARPHONES"
   );
@@ -45,7 +47,7 @@ export default function headphones() {
             <p className="text-center text-[15px] font-medium text-[rgba(0,0,0,0.5)] mb-4 md:text-left">
               {earphonesOne.description}
             </p>
-            <Link href={`/product/${earphonesOne.id}`} >
+            <Link href={`/product/${earphonesOne.id}`}>
               <button className="w-40  h-12 font-bold text-[13px] text-white bg-[#D87D4A] hover:bg-[#FBAF85]">
                 See Product
               </button>
