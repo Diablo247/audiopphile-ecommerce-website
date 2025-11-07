@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import { CartProvider } from "./context/cartContext";
 import { Manrope } from "next/font/google";
 import "./globals.css";
@@ -12,11 +12,18 @@ const manrope = Manrope({
   variable: "--font-manrope",
 });
 
-// ✅ Initialize Convex client only on client side
-const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
-const convex = convexUrl ? new ConvexReactClient(convexUrl) : null;
-
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const [convex, setConvex] = useState<ConvexReactClient | null>(null);
+
+  // ✅ Initialize Convex client only in the browser
+  useEffect(() => {
+    const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
+    if (convexUrl) {
+      const { ConvexReactClient } = require("convex/react");
+      setConvex(new ConvexReactClient(convexUrl));
+    }
+  }, []);
+
   return (
     <html lang="en" className={`${manrope.className} ${manrope.variable}`}>
       <body>
@@ -25,7 +32,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <CartProvider>{children}</CartProvider>
           </ConvexProvider>
         ) : (
-          // ✅ Fallback: only happens during server build
+          // Fallback to render UI during prerender or before hydration
           <CartProvider>{children}</CartProvider>
         )}
       </body>
