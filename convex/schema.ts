@@ -1,7 +1,7 @@
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
-// schema.ts
-export const order = defineTable({
+
+const orders = defineTable({
   cart: v.array(
     v.object({
       id: v.string(),
@@ -17,7 +17,7 @@ export const order = defineTable({
     email: v.string(),
     phone: v.string(),
     address: v.string(),
-    zip: v.string(), // ✅ renamed here
+    zip: v.string(),
     city: v.string(),
     country: v.string(),
     paymentMethod: v.string(),
@@ -27,5 +27,10 @@ export const order = defineTable({
   shipping: v.number(),
   vat: v.number(),
   grandTotal: v.number(),
+  status: v.optional(v.string()), // ✅ add this
+  createdAt: v.optional(v.number()), // ✅ add this
 });
 
+export default defineSchema({
+  orders,
+});
